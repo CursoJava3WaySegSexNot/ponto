@@ -7,7 +7,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@PropertySource({"classpath:application.yml", "classpath:datasource.yml"})
+@PropertySource({"classpath:datasource.properties"})
 public class PontoApplication extends SpringBootServletInitializer {
 
 	@Override

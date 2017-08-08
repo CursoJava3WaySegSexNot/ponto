@@ -117,4 +117,4 @@ dist/
 nbdist/
 .nb-gradle/
 
-src/main/resources/datasource.yml
+src/main/resources/datasource.properties
