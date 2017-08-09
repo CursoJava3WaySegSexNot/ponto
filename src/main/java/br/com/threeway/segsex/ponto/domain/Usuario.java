@@ -2,6 +2,7 @@ package br.com.threeway.segsex.ponto.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -14,8 +15,8 @@ public class Usuario {
     private Long cpf;
     private LocalDate nascimento;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private Contato contato;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Contato> contato;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private Endereco endereco;
@@ -64,11 +65,11 @@ public class Usuario {
         this.nascimento = nascimento;
     }
 
-    public Contato getContato() {
+    public List<Contato> getContato() {
         return contato;
     }
 
-    public void setContato(Contato contato) {
+    public void setContato(List<Contato> contato) {
         this.contato = contato;
     }
 

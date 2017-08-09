@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.faces.view.ViewScoped;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @ViewScoped
@@ -21,7 +23,7 @@ public class FuncionarioBean {
 
 	public FuncionarioBean() {
 		funcionario = new Funcionario();
-		funcionario.setContato(new Contato());
+		funcionario.setContato(new ArrayList<>());
 		funcionario.setEndereco(new Endereco());
 	}
 
