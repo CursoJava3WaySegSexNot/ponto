@@ -1,4 +1,4 @@
-package br.com.threeway.segsex.locadora;
+package br.com.threeway.segsex.ponto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
