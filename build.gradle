@@ -28,15 +28,11 @@ repositories {
 }
 
 dependencies {
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.1.1'
+
     compileOnly 'org.springframework.boot:spring-boot-starter-tomcat'
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-web')
-    runtime('org.springframework.boot:spring-boot-devtools')
-    compile 'org.joinfaces:jsf-spring-boot-starter:2.4.0'
-    compile 'org.primefaces.themes:bootstrap:1.0.10'
-
-    compile 'org.postgresql:postgresql:42.1.4'
-
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.joinfaces', name: 'jsf-spring-boot-starter', version: '2.4.0'
+    compile group: 'org.primefaces.themes', name: 'bootstrap', version: '1.0.10'
 }

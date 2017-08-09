@@ -1,0 +1,68 @@
+.header{
+    background-image: url(../img/fundo-topo.jpg);
+    width: 100%;
+    height: 200px;
+    color: white;
+    text-align: center;
+}
+
+#logo{
+    margin: auto;
+    padding-top: 85px;
+}
+
+#menubar{
+    background-color: gray;
+}
+
+#img-principal{
+    height: 250px;
+
+}
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: slategray;
+    text-align: center;
+}
+
+#painel {
+    font-size: 12px;
+}
+
+#busca .ui-outputlabel{
+    padding: 10px;
+    margin: 10px;
+    font-size: 14px;
+
+}
+
+#busca .ui-inputfield{
+    width: 30%;
+}
+
+#busca .ui-button{
+
+    float: right;
+    background-color: darkblue;
+    color: white;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    margin: -2px;
+
+}
+
+#busca .ui-button .ui-icon{
+    background-color: white;
+}
+
+
+
+
+
+
+
