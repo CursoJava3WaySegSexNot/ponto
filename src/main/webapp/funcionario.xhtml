@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="StyleSheet" type="text/css" href="../css/style.css" media="screen"/>
+</h:head>
+
+<h:body>
+    <ui:composition template="WEB-INF/template.xhtml">
+        <ui:define name="conteudo">
+
+
+            <p:panel id="painel">
+                <h:form id="busca">
+
+                    <p:panel>
+                        <p:outputLabel value="Busca"/>
+                        <p:inputText value="#{clienteBean.busca}" onkeypress="">
+                            <p:ajax event="keyup" update="painel"/>
+                        </p:inputText>
+                        <p:commandButton action="cadastraClientes.xhtml" value="Novo Cliente" icon="ui-icon-plusthick"/>
+                    </p:panel>
+
+                </h:form>
+
+                <br/>
+
+                <p:dataTable paginator="true" rows="6" emptyMessage="Sua busca não retornou resultados" var="cliente"
+                             value="#{clienteBean.clientes}" editable="true">
+
+                    <p:column headerText="Nome">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{cliente.nome}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <h:inputText value="#{cliente.nome}"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="CPF" style="width: 10%">
+                        <h:outputText value="#{cliente.cpf}"/>
+                    </p:column>
+                    <p:column headerText="Data de Nascimento" style="width: 10%">
+
+                        <h:outputText value="#{cliente.nascimento}">
+                            <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+
+
+                    </p:column>
+                    <p:column headerText="Contato" style="width: 10%">
+                        <h:outputText value="#{cliente.contato}"/>
+                    </p:column>
+                    <p:column headerText="Endereço" style="width: 30%;">
+                        <h:outputText value="#{cliente.endereco.logadouro}"/>
+                        <h:outputText value=", #{cliente.endereco.numero}"/>
+                        <h:outputText value=" - #{cliente.endereco.complemento}"/>
+                        <h:outputText value=". #{cliente.endereco.setor}"/>
+                        <h:outputText value=" - #{cliente.endereco.cidade}"/>
+                        <h:outputText value=" - #{cliente.endereco.estado}"/>
+                        <h:outputText value=". #{cliente.endereco.cep}"/>
+                    </p:column>
+
+
+                    <p:column headerText="Ações" id="botoes" style="width: 8%; text-align: center">
+
+                        <p:rowEditor/>
+                        <p:commandButton update="painel" icon="ui-icon-trash"
+                                         action="#{clienteBean.deletar(cliente)}">
+                            <p:confirm header="Confirmação" message="Deseja excluir o filme #{cliente.nome}?"
+                                       icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"
+                                     icon="ui-icon-check"/>
+                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no"
+                                     icon="ui-icon-close"/>
+                </p:confirmDialog>
+
+            </p:panel>
+
+        </ui:define>
+
+    </ui:composition>
+
+
+</h:body>
+</html>
+

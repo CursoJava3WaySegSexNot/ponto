@@ -1,7 +1,7 @@
 package br.com.threeway.segsex.ponto.domain;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,7 +13,7 @@ public class Usuario {
     private String nome;
     private String sobrenome;
     private Long cpf;
-    private LocalDate nascimento;
+    private Date nascimento;
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Contato> contato;
@@ -21,9 +21,11 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Endereco endereco;
 
-    private Permissao permissao;
-    private LocalDate dataDeCadastro;
-    private LocalDate dataDeAtualizacao;
+    @ManyToOne
+    private Cargo cargo;
+
+    private Date dataDeCadastro;
+    private Date dataDeAtualizacao;
 
     public Long getId() {
         return id;
@@ -57,11 +59,11 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public LocalDate getNascimento() {
+    public Date getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(LocalDate nascimento) {
+    public void setNascimento(Date nascimento) {
         this.nascimento = nascimento;
     }
 
@@ -81,27 +83,19 @@ public class Usuario {
         this.endereco = endereco;
     }
 
-    public Permissao getPermissao() {
-        return permissao;
-    }
-
-    public void setPermissao(Permissao permissao) {
-        this.permissao = permissao;
-    }
-
-    public LocalDate getDataDeCadastro() {
+    public Date getDataDeCadastro() {
         return dataDeCadastro;
     }
 
-    public void setDataDeCadastro(LocalDate dataDeCadastro) {
+    public void setDataDeCadastro(Date dataDeCadastro) {
         this.dataDeCadastro = dataDeCadastro;
     }
 
-    public LocalDate getDataDeAtualizacao() {
+    public Date getDataDeAtualizacao() {
         return dataDeAtualizacao;
     }
 
-    public void setDataDeAtualizacao(LocalDate dataDeAtualizacao) {
+    public void setDataDeAtualizacao(Date dataDeAtualizacao) {
         this.dataDeAtualizacao = dataDeAtualizacao;
     }
 }
