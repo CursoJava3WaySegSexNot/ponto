@@ -1,5 +1,7 @@
 package br.com.threeway.segsex.ponto.bean;
 
+import br.com.threeway.segsex.ponto.util.UsuarioUtil;
+import br.com.threeway.segsex.ponto.config.SpringSecurityConfig;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Component;
@@ -19,13 +21,20 @@ import java.io.IOException;
 
 @Component
 @RequestScoped
+
 public class LoginBean implements PhaseListener {
+
+	public String getCurrentUser(){
+		return UsuarioUtil.getUsuario().getNome();
+	}
+
+
 
 	public void login() throws ServletException, IOException {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 
 		RequestDispatcher dispatcher = ((ServletRequest) context.getRequest())
-				.getRequestDispatcher("/j_spring_security_check");
+				.getRequestDispatcher(SpringSecurityConfig.LOGIN_PROCESSING_URL);
 
 		dispatcher.forward((ServletRequest) context.getRequest(),
 				(ServletResponse) context.getResponse());
@@ -50,7 +59,7 @@ public class LoginBean implements PhaseListener {
 					WebAttributes.AUTHENTICATION_EXCEPTION, null);
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Username or password not valid.", "Username or password not valid"));
+							"Usuário e/ou senha inválido(s).", "Usuário e/ou senha inválido(s)"));
 		}
 	}
 

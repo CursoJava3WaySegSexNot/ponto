@@ -19,11 +19,14 @@
 
         <p:menubar id="menubar">
             <p:submenu label="Cadastro" icon="ui-icon-document" style="text-transform: white">
-                    <p:menuitem value="Usuário" url="#" />
+                <p:menuitem value="Usuário" url="#" />
 
             </p:submenu>
 
-
+            <f:facet name="options">
+                <p:outputLabel value="Bem vindo, #{loginBean.currentUser}" style="margin-right: 10px;" />
+                <p:button value="Logout" href="/logout" />
+            </f:facet>
 
         </p:menubar>
     </h:form>

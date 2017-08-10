@@ -3,25 +3,26 @@
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
->
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
 <h:body>
 	<h:form id="loginForm" prependId="false">
 		<!-- Messages must be global here, to show bad credentials -->
-		<h:messages globalOnly="true"/>
+		<p:messages globalOnly="true"/>
 
 		<!-- Id's must not be changed to support spring security check -->
-		<h:panelGrid columns="3">
-			<h:outputLabel for="j_username" value="User: * "/>
-			<h:inputText id="j_username" required="true" label="username"/>
-			<h:message for="j_username" display="text" style="color:red"/>
+		<p:panelGrid columns="2">
+			<p:outputLabel for="username" value="User: "/>
+			<p:inputText id="username" required="true" label="username"/>
 
-			<h:outputLabel for="j_password" value="Password: * "/>
-			<h:inputSecret id="j_password" label="password" required="true"/>
-			<h:message for="j_password" display="text" style="color:red"/>
-		</h:panelGrid>
+			<p:outputLabel for="password" value="Password: "/>
+			<p:password id="password" label="password" required="true"/>
+		</p:panelGrid>
 
-		<h:commandButton type="submit" id="login" value="Login"
-						 action="#{loginBean.login}"/>
+		<p:commandButton id="login" value="Login"
+						 action="#{loginBean.login}" ajax="false"/>
 	</h:form>
 </h:body>
 </html>
