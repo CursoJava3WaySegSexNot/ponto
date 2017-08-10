@@ -12,7 +12,7 @@ public class Cargo {
     private Long id;
     private String nomeDoCargo;
     private Double salario;
-    private Double cargaHoraria;
+    private Integer cargaHoraria;
 
     public Long getId() {
         return id;
@@ -38,11 +38,11 @@ public class Cargo {
         this.salario = salario;
     }
 
-    public Double getCargaHoraria() {
+    public Integer getCargaHoraria() {
         return cargaHoraria;
     }
 
-    public void setCargaHoraria(Double cargaHoraria) {
+    public void setCargaHoraria(Integer cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
 }

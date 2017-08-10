@@ -7,36 +7,35 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <link rel="StyleSheet" type="text/css" href="../css/style.css" media="screen" />
+    <link rel="StyleSheet" type="text/css" href="/css/style.css" media="screen"/>
 
 </h:head>
 <h:body>
-    <div class="header">
-    <h1 id="logo">Ponto Eletronico</h1>
+    <div class="container">
+        <div class="header">
+            <h1 id="logo">Ponto Eletronico</h1>
+        </div>
+        <h:form>
+            <p:growl id="messages"/>
+
+            <p:menubar id="menubar">
+                <p:submenu label="Cadastro" icon="ui-icon-document" style="text-transform: white">
+                    <p:menuitem value="Cargo" url="/admin/cadastro/cargo.xhtml"/>
+
+                </p:submenu>
+
+            </p:menubar>
+        </h:form>
+
+        <div id="conteudo">
+            <ui:insert name="conteudo">
+                <h2>Conteúdo a ser incluído</h2>
+            </ui:insert>
+        </div>
     </div>
-    <h:form>
-        <p:growl id="messages"/>
-
-        <p:menubar id="menubar">
-            <p:submenu label="Cadastro" icon="ui-icon-document" style="text-transform: white">
-                    <p:menuitem value="Usuário" url="#" />
-
-            </p:submenu>
-
-
-
-        </p:menubar>
-    </h:form>
-
-    <div id="conteudo">
-        <ui:insert name="conteudo">
-            <h2>Conteúdo a ser incluído</h2>
-        </ui:insert>
-    </div>
-
     <div class="footer">
         Esta aplicação faz parte do curso de JavaWeb. <a href="https://github.com/CursoJava3WaySegSexNot"
-        target="_blank"><strong>GitHub</strong></a> .
+                                                         target="_blank"><strong>GitHub</strong></a> .
     </div>
 
 

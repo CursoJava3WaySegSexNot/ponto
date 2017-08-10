@@ -20,7 +20,7 @@
 
 }
 .footer {
-    position: absolute;
+    position: relative;
     right: 0;
     bottom: 0;
     left: 0;
@@ -58,6 +58,19 @@
 
 #busca .ui-button .ui-icon{
     background-color: white;
+}
+
+#form-cadastro .ui-outputlabel {
+    margin: 10px;
+    padding-top: 10px;
+}
+
+#form-cadastro .ui-inputfield {
+    margin: 10px;
+    padding-top: 10px;
+    height: 15px;
+    display: block;
+
 }
 
 
