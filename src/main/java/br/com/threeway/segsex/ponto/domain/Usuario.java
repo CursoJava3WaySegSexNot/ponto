@@ -1,101 +1,181 @@
 package br.com.threeway.segsex.ponto.domain;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
-public class Usuario {
+public class Usuario implements UserDetails {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-    private String nome;
-    private String sobrenome;
-    private Long cpf;
-    private Date nascimento;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    private List<Contato> contato;
+	@Column(unique = true)
+	private String username;
+	private String password;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private Endereco endereco;
+	@ManyToMany
+	private List<Papel> papeis;
 
-    @ManyToOne
-    private Cargo cargo;
+	private String nome;
+	private String sobrenome;
+	private String cpf;
+	private Date nascimento;
 
-    private Date dataDeCadastro;
-    private Date dataDeAtualizacao;
+	@OneToMany(cascade = CascadeType.PERSIST)
+	@JoinColumn
+	private List<Contato> contato;
 
-    public Long getId() {
-        return id;
-    }
+	@OneToOne(cascade = CascadeType.PERSIST)
+	private Endereco endereco;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@ManyToOne
+	private Cargo cargo;
 
-    public String getNome() {
-        return nome;
-    }
+	private Date dataDeCadastro;
+	private Date dataDeAtualizacao;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getSobrenome() {
-        return sobrenome;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public Long getCpf() {
-        return cpf;
-    }
+	@Override
+	public String getUsername() {
+		return username;
+	}
 
-    public void setCpf(Long cpf) {
-        this.cpf = cpf;
-    }
+	@Override
+	public String getPassword() {
+		return password;
+	}
 
-    public Date getNascimento() {
-        return nascimento;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setNascimento(Date nascimento) {
-        this.nascimento = nascimento;
-    }
+	public List<Papel> getPapeis() {
+		return papeis;
+	}
 
-    public List<Contato> getContato() {
-        return contato;
-    }
+	public void setPapeis(List<Papel> papeis) {
+		this.papeis = papeis;
+	}
 
-    public void setContato(List<Contato> contato) {
-        this.contato = contato;
-    }
+	public Cargo getCargo() {
+		return cargo;
+	}
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public Date getDataDeCadastro() {
-        return dataDeCadastro;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setDataDeCadastro(Date dataDeCadastro) {
-        this.dataDeCadastro = dataDeCadastro;
-    }
+	public String getSobrenome() {
+		return sobrenome;
+	}
 
-    public Date getDataDeAtualizacao() {
-        return dataDeAtualizacao;
-    }
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
 
-    public void setDataDeAtualizacao(Date dataDeAtualizacao) {
-        this.dataDeAtualizacao = dataDeAtualizacao;
-    }
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public Date getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(Date nascimento) {
+		this.nascimento = nascimento;
+	}
+
+	public List<Contato> getContato() {
+		return contato;
+	}
+
+	public void setContato(List<Contato> contato) {
+		this.contato = contato;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Date getDataDeCadastro() {
+		return dataDeCadastro;
+	}
+
+	public void setDataDeCadastro(Date dataDeCadastro) {
+		this.dataDeCadastro = dataDeCadastro;
+	}
+
+	public Date getDataDeAtualizacao() {
+		return dataDeAtualizacao;
+	}
+
+	public void setDataDeAtualizacao(Date dataDeAtualizacao) {
+		this.dataDeAtualizacao = dataDeAtualizacao;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+		grantedAuthorities.addAll(papeis);
+
+		grantedAuthorities.addAll(papeis.stream().
+				flatMap(papel -> papel.getPermissoes().stream())
+				.collect(Collectors.toSet()));
+
+		return grantedAuthorities;
+	}
+
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
 }
