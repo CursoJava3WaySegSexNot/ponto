@@ -11,13 +11,14 @@
     <link rel="StyleSheet" type="text/css" href="/css/login.css" media="screen"/>
 </h:head>
 <h:body>
+    <p:messages globalOnly="true"/>
     <div class="logo"/>
 
         <div class="login-block">
             <h1>Ponto Eletronico</h1>
             <h:form class="login-form" prependId="false">
                 <!-- Messages must be global here, to show bad credentials -->
-                <p:messages globalOnly="true"/>
+
                 <!-- Id's must not be changed to support spring security check -->
                 <p:inputText id="username" placeholder="Nome de usuário" required="true" label="username"/>
                 <p:password id="password" placeholder="Senha" label="password" required="true"/>
