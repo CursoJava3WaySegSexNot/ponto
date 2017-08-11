@@ -29,6 +29,10 @@ public class UsuarioService implements UserDetailsService {
 		usuarioDao.save(usuario);
 	}
 
+	public void delete(Usuario usuario){
+		usuarioDao.delete(usuario);
+	}
+
 	public void changePassword(Usuario usuario) {
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 	}

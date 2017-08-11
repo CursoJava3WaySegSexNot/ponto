@@ -2,6 +2,7 @@ package br.com.threeway.segsex.ponto.bean;
 
 import br.com.threeway.segsex.ponto.domain.Cargo;
 import br.com.threeway.segsex.ponto.service.CargoService;
+import br.com.threeway.segsex.ponto.util.MensagemUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,8 +30,7 @@ public class CargoBean {
 
 	public void save(){
 		cargoService.save(cargo);
-		FacesContext msg = FacesContext.getCurrentInstance();
-		msg.addMessage(null,new FacesMessage("Sucesso","Cargo "+cargo.getNomeDoCargo()+" cadastrado"));
+		MensagemUtil.mostreMensagem("Cargo "+cargo.getNomeDoCargo()+" Salvo com sucesso");
 		cargo = new Cargo();
 	}
 
